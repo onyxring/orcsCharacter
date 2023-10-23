@@ -16,12 +16,12 @@ Of course, this isn’t an overwhelming example, but it *does* underscore the id
 
 _There are a couple of noteworthy points to make about the orCharacter example above:_
 * _The properties exposing character attributes are asynchronous and leverage the relatively new Async/Await features of the JavaScript language.  In short, reading and writing properties each interact directly with the Roll20 servers.  The `await` keyword causes code to pause until the server interaction is complete, rather than having to define callback functions. (We make this more efficient in the next section.)_
-* _orCharacter also attempts to detect and manage numeric attributes.  Out of the box, if attributes are “likely” numeric, they are automatically converted to numbers, relieving you from having to write the traditional type conversion code (e.g. `Numeric(attr||0)`).  If this behavior doesn’t shake your jive, you can easily turn it off and restore the default Roll20 treatment of attributes by adding this to the top of your SheetWorker:_
+* _orCharacter also attempts to detect and manage numeric attributes.  Out of the box, if attributes are “likely” numeric, they are automatically converted to numbers, relieving you from having to write the traditional type-conversion code (e.g. `Numeric(attr||0)`).  If this behavior doesn’t shake your jive, you can easily turn it off and restore the default Roll20 treatment of attributes by adding this to the top of your SheetWorker:_
 ```
 pc.preferNumeric = false;
 ```
 ### Attributes as cached properties
-The above “simplest example” follows an “on-demand” philosophy.  Read an attribute?  Go to the server.  Write an attribute?  Go to the server.  Read the same attribute again?  Go to the server.  For complex or performance-critical code, orCharacter supports bulk reads and writes using `cacheAsync()` which keep all changes in memory until we are ready to save them all at once with `commitAsyc()`:
+The above “simplest example” follows an “on-demand” philosophy.  Read an attribute?  Go to the server.  Write an attribute?  Go to the server.  Read the same attribute again?  Go to the server.  This is fine for many use cases, but for complex or performance-critical code, orCharacter supports bulk reads and writes using `cacheAsync()` which keep all changes in memory until we are ready to save them all at once with `commitAsyc()`:
 
 	var attrbs = await pc.cacheAsync(["HP", "spiritPool", "efficacy"]); //get several attributes at the same time
 	attrbs.HP = attrbs.HP + attrbs.efficacy; //use and modify them
