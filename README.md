@@ -117,7 +117,7 @@ Installation is a snap.  Just paste the content from one of the "complete" files
 ### A PC by any other name...
 "PC" isn't a very unique name and the change for collision with one of your own variable names is hight. It's not a problem.  If you'd rather, you can just rename the `pc` variable to whatever you want in the final line of the included script, like so:
 
-	_myPC = new orcsCharacter();	
+	var _myPC = orcsCharacter.create();
 
 ### “You are a familiar character, sir.”
 You might have heard of orCharacter before since I once released an even more beta version of it (a “beta-ier” version?), included in a larger API-dependent framework.  That whole framework was a lot to bite off for a single, targeted feature.  For this discrete release:
