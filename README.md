@@ -126,6 +126,6 @@ You might have heard of orCharacter before since I once released an even more be
 * It is for Sheet Workers only; there are no API requirements.
 * I’ve refactored the original code to clearly differentiate synchronous from asynchronous functions.  If you have been using the version supplied with the beta release of [ORAL ORCS](https://github.com/onyxring/Roll20OralOrcs), some minor modifications might be required to transition to this revision.  
 * The caching/bulk-read-write features described above are brand-spanking new! 
-* I’ve included the recently updated Roll20Async script since this is a dependency and JavaScript Promises are a cornerstone of `orcsCharacter`’s expressiveness.  
+* I’ve included the recently updated [Roll20Async](https://github.com/onyxring/Roll20Async) script since this is a dependency and JavaScript Promises are a cornerstone of `orcsCharacter`’s expressiveness.  
 
 The enhancements from the previous ORAL ORCS version are non-trivial, so it still gets the beta moniker for now; however, testing so far has also been non-trivial so it should be solid enough to try out in development versions of your character sheets.
