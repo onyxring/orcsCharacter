@@ -15,7 +15,7 @@ Compare the above to the following vanilla code which does the same thing:
 Of course, this isn’t an overwhelming example, but it *does* underscore the idea that callbacks, used in traditional Sheet Worker code, make things more convoluted than they ought to be.  Complex tasks can get out of hand quickly.
 
 _There are a couple of noteworthy points to make about the orCharacter example above:_
-* _The properties exposing character attributes are asynchronous and leverage the relatively new Async/Await features of the JavaScript language.  In short, reading and writing properties each interact directly with the Roll20 servers.  The `await` keyword causes code to pause until the server interaction is complete, rather than having to define callback functions. (We make this more efficient in the next section.)_
+* _The properties exposing character attributes are asynchronous and leverage the Async/Await features of the JavaScript language.  In short, reading and writing properties each interact directly with the Roll20 servers.  The `await` keyword causes code to pause until the server interaction is complete, rather than having to define callback functions. (We make this more efficient in the next section.)_
 * _orCharacter also attempts to detect and manage numeric attributes.  Out of the box, if attributes are “likely” numeric, they are automatically converted to numbers, relieving you from having to write the traditional type-conversion code (e.g. `Numeric(attr||0)`).  If this behavior doesn’t shake your jive, you can easily turn it off and restore the default Roll20 treatment of attributes by adding this to the top of your SheetWorker:_
 ```
 pc.preferNumeric = false;
