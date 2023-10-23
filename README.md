@@ -54,10 +54,9 @@ Here’s an example which searches the PC’s inventory for all disparate “Bag
 
 The above is straightforward, linear, and readable.  
 
-### Cached Repeating Sections too
 Repeating Sections can also be cached in the same way we cache basic attributes: by pre-loading values and committing changes when we are finished using them.
 
-Here’s a revised version of the above, which looks **very similar**, but uses `cacheRepeatingAsync()` instead of `getRepeatingAsync()`. It uses cached attributes instead of on-demand access, so fewer `awaits` are used: 
+Here’s a revised version of the above, which looks **very similar**, but substitutes `cacheRepeatingAsync()` for `getRepeatingAsync()`. It uses cached attributes instead of on-demand access, so fewer `awaits` are used: 
 
 	async function combineAllBagsOfGoldCached(){
 		var totalGold = 0;
@@ -96,10 +95,10 @@ For comparison, I put together a vanilla flavor of the above.  It’s fine.  But
 		});
 	}
 
-While it’s true both orCharacter versions are shorter than the traditional version, that isn’t really the benefit here.  The complexity of the vanilla code, including the nested callbacks and amalgamated strings acting as pointers to  attributes, makes it harder to grok at a glance.  The orCharacter versions, by comparison, are easier to follow and therefore support.
+While it’s true both orCharacter versions are shorter than the traditional version, that isn’t really the benefit here.  The complexity of the vanilla code, including the nested callbacks and amalgamated strings acting as attribute pointers, makes it harder to grok at a glance.  The orCharacter versions, by comparison, are easier to follow and therefore support.
 
 ### Tangential benefits
-I believe a side-effect of improved syntaxes, generally, is they often simplify previously difficult tasks almost  accidentally.  For example, summing values of a Repeating Section and assigning their total to a character attribute sounds like a trivial undertaking.  orCharacter makes it so, not because it provides a specialized `addItUp` function (because it *doesn’t*), but as a consequence of its expressiveness.  You can do this…
+I believe a side-effect of improved syntaxes, generally, is they often simplify previously difficult tasks almost accidentally.  For example, summing values of a Repeating Section and assigning their total to a character attribute sounds like a trivial undertaking.  orCharacter makes this so, not because it provides a specialized `addItUp` function (because it *doesn’t*), but as a consequence of its expressiveness.  You can do this…
 
     var total = 0, inventory = await pc.getRepeatingAsync("inventory"); 
     for (item of inventory) total += await item.value;
@@ -109,13 +108,17 @@ I believe a side-effect of improved syntaxes, generally, is they often simplify 
 
 	pc.HP = (await pc.cacheRepeatingAsync("inventory", ["value"])).reduce((i, v) => i + v.value, 0);
 
- The comparison vanilla code is long, and only a little shorter than the previous `combineAllBagsOfGoldVanilla()` example.
+ The comparable vanilla code is significantly longer and is expressed as a slightly shorter version of the previous `combineAllBagsOfGoldVanilla()` example.
 
 ### Installation 
-Installation is a snap.  Just paste the content from one of the "complete" files (either "orcsCharacter.complete.js", or the smaller "orcsCharacter.complete.min.js") into the top of your SheetWorker code and you're ready.
+Installation is a snap.  Just paste the content from one of the "complete" files (either "orcsCharacter.complete.js", or the smaller "orcsCharacter.complete.min.js") into the top of your SheetWorker code and you're ready.  
 
 ### A PC by any other name...
-"PC" isn't a very unique name and the change for collision with one of your own variable names is hight. It's not a problem.  If you'd rather, you can just rename the `pc` variable to whatever you want in the final line of the included script, like so:
+"PC" isn't a very unique name in RPGs and the chance for collision with one of your own variable names is high. It's not a problem.  Just copy the content of the `pc` variable before you assign it in your own code:
+
+ 	var _myPC = pc; 
+ 
+Or if you'd rather, you can just rename the `pc` variable to whatever you want by changing the final line of the included script, like so:
 
 	var _myPC = orcsCharacter.create();
 
