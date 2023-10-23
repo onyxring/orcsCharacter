@@ -1,7 +1,5 @@
-
-
-# orCharacter for Roll20 Character Sheets (orcsCharacter)
-orCharacter is a self-contained, non-invasive script which significantly simplifies using attributes on Roll20 character sheets by implementing JavaScript’s Proxy and Async/Await patterns.  It drops easily into new and existing sheets without affecting your existing code.  It’s non-invasive so you can mix-and-match traditional code with orCharacter as you please.  Here’s a short-ish rundown of what orCharacter brings to the table:
+# orCharacter for Roll20 character sheets (orcsCharacter)
+orCharacter for character sheets is a self-contained, non-invasive script which significantly simplifies using attributes by implementing JavaScript’s Proxy and Async/Await patterns.  It drops easily into new and existing sheets without affecting your existing code.  It’s non-invasive so you can mix-and-match traditional code with orCharacter as you please.  Here’s a short-ish rundown of what orCharacter brings to the table:
 
 ### Attributes as properties
 The simplest example is reading and writing attributes.  Consider the act of healing the player character’s `HP` with their `REC`overy.  Using orCharacter, you write this as:
