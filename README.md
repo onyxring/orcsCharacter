@@ -95,7 +95,7 @@ For comparison, I put together a vanilla flavor of the above.  It’s fine.  But
 		});
 	}
 
-While it’s true both orCharacter versions are shorter than the traditional version, that isn’t really the benefit here.  The complexity of the vanilla code, including the nested callbacks and amalgamated strings acting as attribute pointers, makes it harder to grok at a glance.  The orCharacter versions, by comparison, are easier to follow and therefore support.
+While it’s true both orCharacter versions are shorter than the traditional version, that isn’t the biggest benefit here.  The complexity of the vanilla code, including the nested callbacks and amalgamated strings acting as attribute pointers, makes it harder to grok at a glance.  The orCharacter versions, by comparison, are easier to follow and therefore support.
 
 ### Tangential benefits
 I believe a side-effect of improved syntaxes, generally, is they often simplify previously difficult tasks almost accidentally.  For example, summing values of a Repeating Section and assigning their total to a character attribute sounds like a trivial undertaking.  orCharacter makes this so, not because it provides a specialized `addItUp` function (because it *doesn’t*), but as a consequence of its expressiveness.  You can do this…
