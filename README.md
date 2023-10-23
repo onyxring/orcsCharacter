@@ -21,11 +21,11 @@ _There are a couple of noteworthy points to make about the orCharacter example a
 pc.preferNumeric = false;
 ```
 ### Attributes as cached properties
-The above “simplest example” follows an “on-demand” philosophy.  Read an attribute?  Go to the server.  Write an attribute?  Go to the server.  Read the same attribute again?  Go to the server.  This is fine for many use cases, but for complex or performance-critical code, orCharacter supports bulk reads and writes using `cacheAsync()` which keep all changes in memory until we are ready to save them all at once with `commitAsyc()`:
+The above “simplest example” follows an “on-demand” philosophy.  Read an attribute?  Go to the server.  Write an attribute?  Go to the server.  Read the same attribute again?  Go to the server.  This is fine for many use cases, but for complex or performance-critical code, orCharacter supports bulk reads and writes using `cacheAsync()` which keeps all changes in memory until we are ready to save them all at once with `commitAsyc()`:
 
 	var attrbs = await pc.cacheAsync(["HP", "spiritPool", "efficacy"]); //get several attributes at the same time
 	attrbs.HP = attrbs.HP + attrbs.efficacy; //use and modify them
-	attrbs.spiritPool = attrbs.spiritPool - atrbs.efficacy;
+	attrbs.spiritPool = attrbs.spiritPool - attrbs.efficacy;
 	attrbs.commitAsync(); //save changes together
 
 _Notice that, while we may `await` round trips to the server, we do **not** do so when reading or writing cached attributes._ 
