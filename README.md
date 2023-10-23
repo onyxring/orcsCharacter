@@ -116,11 +116,11 @@ Installation is a snap.  Just paste the content from one of the "complete" files
 ### A PC by any other name...
 "PC" isn't a very unique name in RPGs and the chance for collision with one of your own variable names is high. It's not a problem.  Just copy the content of the `pc` variable before you assign it in your own code:
 
- 	var _myPC = pc; 
+ 	var _myPlayerCharacter = pc; 
  
 Or if you'd rather, you can just rename the `pc` variable to whatever you want by changing the final line of the included script, like so:
 
-	var _myPC = orcsCharacter.create();
+	var _myPlayerCharacter = orcsCharacter.create();
 
 ### “You are a familiar character, sir.”
 You might have heard of orCharacter before since I once released an even more beta version of it (a “beta-ier” version?), included in a larger API-dependent framework.  That whole framework was a lot to bite off for a single, targeted feature.  For this discrete release:
