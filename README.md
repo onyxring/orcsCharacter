@@ -33,7 +33,7 @@ _Notice that, while we may `await` round trips to the server, we do **not** do s
 _Also note we aren’t `await`ing the final `commitAsync()` call. This is a choice.  We would do so if we needed to ensure all attributes were committed in subsequent logic._
 
 ### Simplified Repeating Sections
-Repeating Sections are awesome, but usher in some of The Most Complicated Code in Sheet Workers today.  orCharacter makes working with Repeating Sections markedly more intuitive and expressive.
+Repeating Sections are awesome, but they also usher in some of The Most Complicated Code in Sheet Workers today.  orCharacter makes working with Repeating Sections markedly more intuitive and expressive.
 
 Here’s an example which searches the PC’s inventory for all disparate “Bags of Gold” and combines their contents into a single bag:
 
