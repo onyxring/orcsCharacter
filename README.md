@@ -112,6 +112,9 @@ I believe a side-effect of improved syntaxes, generally, is they often simplify 
 
 	pc.HP = (await pc.cacheRepeatingAsync("inventory", ["value"])).reduce((i, v) => i + v.value, 0);
 
+### Installation 
+Installation is a snap.  Just paste the content from one of the "complete" files (either "orcsCharacter.complete.js", or the smaller "orcsCharacter.complete.min.js") at the top of your SheetWorker code and you're ready.
+
 ### “You are a familiar character, sir.”
 You might have heard of orCharacter before since I once released an even more beta version of it (a “beta-ier” version?), included in a larger API-dependent framework.  That whole framework was a lot to bite off for a single, targeted feature.  For this discrete release:
 
