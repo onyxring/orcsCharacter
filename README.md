@@ -12,7 +12,7 @@ Compare the above to the following vanilla code which does the same thing:
         setAttrs({ "HP": Number(values.HP||0) + Number(values.REC||0);} );
 	});
 
-Of course, this isn’t an overwhelming example, but it *does* underscore the idea that callbacks, used in traditional Sheet Worker code, make things more convoluted than they ought to be.  Complex tasks can get out of hand quickly.
+Of course, this isn’t an overwhelming example, but it *does* underscore the idea that callbacks, a staple in coding practices of years past, make things more convoluted than their modern `async` alternatives.  Complex tasks can get out of hand quickly.
 
 _There are a couple of noteworthy points to make about the orCharacter example above:_
 * _The properties exposing character attributes are asynchronous and leverage the Async/Await features of the JavaScript language.  In short, reading and writing properties each interact directly with the Roll20 servers.  The `await` keyword causes code to pause until the server interaction is complete, rather than having to define callback functions. (We make this more efficient in the next section.)_
@@ -33,8 +33,7 @@ _Notice that, while we may `await` round trips to the server, we do **not** do s
 _Also note we aren’t `await`ing the final `commitAsync()` call. This is a choice.  We would do so if we needed to ensure all attributes were committed in subsequent logic._
 
 ### Simplified Repeating Sections
-Repeating Sections usher in some of The Most Convoluted Code in Sheet Workers.  orCharacter makes working with Repeating Sections markedly more intuitive and expressive.
-
+Repeating Sections are awesome, but usher in some of The Most Complicated Code in Sheet Workers today.  orCharacter makes working with Repeating Sections markedly more intuitive and expressive.
 
 Here’s an example which searches the PC’s inventory for all disparate “Bags of Gold” and combines their contents into a single bag:
 
@@ -72,7 +71,7 @@ Here’s a revised version of the above, which looks **very similar**, but uses 
 		inventory.commitAsync();
 	}
 
-For comparison, I put together a vanilla flavor of the above.  It’s absurd.  I want to throw rocks at it and steal its lunch money:
+For comparison, I put together a vanilla flavor of the above.  It’s fine.  But I want to throw rocks at it and steal its lunch money:
 
 	function combineAllBagsOfGoldVanilla() {
 		var totalGold = 0;
@@ -110,8 +109,15 @@ I believe a side-effect of improved syntaxes, generally, is they often simplify 
 
 	pc.HP = (await pc.cacheRepeatingAsync("inventory", ["value"])).reduce((i, v) => i + v.value, 0);
 
+ The comparison vanilla code is long, and only a little shorter than the previous `combineAllBagsOfGoldVanilla()` example.
+
 ### Installation 
-Installation is a snap.  Just paste the content from one of the "complete" files (either "orcsCharacter.complete.js", or the smaller "orcsCharacter.complete.min.js") at the top of your SheetWorker code and you're ready.
+Installation is a snap.  Just paste the content from one of the "complete" files (either "orcsCharacter.complete.js", or the smaller "orcsCharacter.complete.min.js") into the top of your SheetWorker code and you're ready.
+
+### A PC by any other name...
+"PC" isn't a very unique name and the change for collision with one of your own variable names is hight. It's not a problem.  If you'd rather, you can just rename the `pc` variable to whatever you want in the final line of the included script, like so:
+
+	_myPC = new orcsCharacter();	
 
 ### “You are a familiar character, sir.”
 You might have heard of orCharacter before since I once released an even more beta version of it (a “beta-ier” version?), included in a larger API-dependent framework.  That whole framework was a lot to bite off for a single, targeted feature.  For this discrete release:
