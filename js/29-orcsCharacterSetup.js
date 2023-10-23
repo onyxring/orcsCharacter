@@ -1,0 +1,1 @@
+var pc=orcsCharacter.create();
