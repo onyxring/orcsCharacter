@@ -37,27 +37,6 @@ Repeating Sections are awesome, but they also usher in some of The Most Complica
 
 Here’s an example which searches the PC’s inventory for all disparate “Bags of Gold” and combines their contents into a single bag:
 
-	async function combineAllBagsOfGold(){
-		var totalGold = 0;
-		var inventory = await pc.getRepeatingAsync("inventory"); 
-		for (row of inventory) {
-			if (await row.type != "Bag of Gold") continue;
-			totalGold += await row.value;
-			row.delete();
-		}
-		if (totalGold > 0) {
-			var item=inventory.addNew(); //*could* specify inline attribs...
-			item.type = "Bag of Gold";
-			item.value = totalGold;
-		}
-	}
-
-The above is straightforward, linear, and readable.  
-
-Repeating Sections can also be cached in the same way we cache basic attributes: by pre-loading values and committing changes when we are finished using them.
-
-Here’s a revised version of the above, which looks **very similar**, but substitutes `cacheRepeatingAsync()` for `getRepeatingAsync()`. It uses cached attributes instead of on-demand access, so fewer `awaits` are used: 
-
 	async function combineAllBagsOfGoldCached(){
 		var totalGold = 0;
 		var inventory = await pc.cacheRepeatingAsync("inventory", ["type", "value"]); 
@@ -70,7 +49,7 @@ Here’s a revised version of the above, which looks **very similar**, but subst
 		inventory.commitAsync();
 	}
 
-For comparison, I put together a vanilla flavor of the above.  It’s fine.  But I want to throw rocks at it and steal its lunch money:
+The above is straightforward, linear, and readable.  For comparison, I put together a vanilla flavor of the above.  It’s fine.  But I want to throw rocks at it and steal its lunch money:
 
 	function combineAllBagsOfGoldVanilla() {
 		var totalGold = 0;
@@ -95,7 +74,7 @@ For comparison, I put together a vanilla flavor of the above.  It’s fine.  But
 		});
 	}
 
-While it’s true both orCharacter versions are shorter than the traditional version, that isn’t the biggest benefit here.  The complexity of the vanilla code, including the nested callbacks and amalgamated strings acting as attribute pointers, makes it harder to grok at a glance.  The orCharacter versions, by comparison, are easier to follow and therefore support.
+While it’s true the orCharacter version is shorter than the traditional version, that isn’t the biggest benefit here.  The complexity of the vanilla code, including the nested callbacks and amalgamated strings acting as attribute pointers, makes it harder to grok at a glance.  The orCharacter version, by comparison, is easier to follow and therefore support.
 
 ### Tangential benefits
 I believe a side-effect of improved syntaxes, generally, is they often simplify previously difficult tasks almost accidentally.  For example, summing values of a Repeating Section and assigning their total to a character attribute sounds like a trivial undertaking.  orCharacter makes this so, not because it provides a specialized `addItUp` function (because it *doesn’t*), but as a consequence of its expressiveness.  You can do this…
