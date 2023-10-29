@@ -1,10 +1,10 @@
 class orcsRepeatingSectionRowCache{
-    _parent;
-    _rowId; 
-    _cache = {};
-    _isDirty = {};
-    _isDeleted = false;
-    
+    _parent;    //the parent object is the orcsRepeatingSectionCache
+    _rowId;     //the unique identifier for this row
+    _cache = {};//the cached values
+    _isDirty = {};//we track the values that have been changed
+    _isDeleted = false; //has this row been marked for deletion
+    _proxy = null;  //the proxy which is exposed to users
 
     static create(parent,rowId) {
         var retval = new orcsRepeatingSectionRowCache();
@@ -13,28 +13,30 @@ class orcsRepeatingSectionRowCache{
         retval._proxy = retval;
         return new Proxy(retval, orcsRepeatingSectionRowCache.#repeatingSectionRowCacheHandler);
     }
-        
+    getCommitJson() {
+        if (this._isDeleted == true) return "";
+        var json = "";
+        for (var attrb in this._cache) {
+            if (this._isDirty[attrb] != true) continue;
+            if (json != "") json += ",";
+            json += ('"' + this._propKey(attrb) + '":"' + this._cache[attrb].toString().replaceAll(/"/gi, '\\"') + '"');
+        }
+        return JSON.parse('{' + json + '}');
+    }
+    clean() {
+        //for (var attrb in obj._cache) obj._isDirty[attrb] = false;
+        this._isDirty = [];
+    }
     static #repeatingSectionRowCacheHandler={
         get:(obj,prop)=>{
 
             switch (prop) {
+                case "getProxyTarget": return () => { return obj; };
                 case "_rowId": return obj._rowId;
-                case "_proxy": return obj._proxy;
-                case "_cache": return obj._cache;
                 case "_isDeleted": return obj._isDeleted;
-                case "_propKey": return (prop) => { return obj._propKey(prop); }
+                case "clean": return () => { return obj.clean() };
                 case "delete": return () => { obj._isDeleted = true; };
                 case "undelete": return ()=>{obj._isDeleted=false;};
-                case "getCommitJson": return () => {
-                    if (obj._isDeleted == true) return "";
-                    var json="";
-                    for (var attrb in obj._cache) {
-                        if (obj._isDirty[attrb] != true) continue;
-                        if(json!="") json+=",";
-                        json+=('"'+obj._propKey(attrb)+'":"'+obj._cache[attrb].toString().replaceAll(/"/gi,'\\"')+'"');
-                    }
-                    return JSON.parse('{'+json+'}');
-                }
             }
             return obj._rootCharacterObj._enforceDataType(obj._cache[prop]);
         },

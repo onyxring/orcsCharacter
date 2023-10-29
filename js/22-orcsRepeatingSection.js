@@ -21,7 +21,7 @@ class orcsRepeatingSection extends Array{
         return newRow;
     };
     async hydrateAsync() {
-        var rowIds = await getSectionIDsAsync(this._key)
+        var rowIds = await getSectionIDsAsync(this._key);
         for(var rowId of rowIds){
             this.push(this.createRowProxy(rowId));
         }
