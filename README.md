@@ -84,7 +84,7 @@ The above is straightforward, linear, and readable.  For comparison, I put toget
 				ids.forEach(id => {
 					if (values[repeating_inventory_${id}_type] != "Bag of Gold") return;
 					totalGold  += Number(values[repeating_inventory_${id}_value] || 0);
-					removeRepeatingRow(repeating_inventory_${id});
+					removeRepeatingRow(`repeating_inventory_${id}`);
 				});
 				if(totalGold>0){
 					var newId = generateRowID();
