@@ -77,18 +77,18 @@ The above is straightforward, linear, and readable.  For comparison, I put toget
 			var atrbList = "";
 			ids.forEach((id) => {
 				if (atrbList != "") atrbList = atrbList + ",";
-				atrbList = atrbList + "repeating_inventory_${id}_type", "repeating_inventory_${id}_value";
+				atrbList = atrbList + `repeating_inventory_${id}_type`, `repeating_inventory_${id}_value`;
 			});
 			atrbList = JSON.parse("[" + atrbList + "]");
 			getAttrs(atrbList, (values) => {
 				ids.forEach(id => {
 					if (values[repeating_inventory_${id}_type] != "Bag of Gold") return;
-					totalGold  += Number(values[repeating_inventory_${id}_value] || 0);
+					totalGold  += Number(values[`repeating_inventory_${id}_value`] || 0);
 					removeRepeatingRow(`repeating_inventory_${id}`);
 				});
 				if(totalGold>0){
 					var newId = generateRowID();
-					setAttrs(JSON.parse({"repeating_inventory_${newId}_type" : "Bag of Gold", "repeating_inventory_${newId}_value" : ${totalGold} }));
+					setAttrs(JSON.parse({`repeating_inventory_${newId}_type` : "Bag of Gold", `repeating_inventory_${newId}_value` : ${totalGold} }));
 				}
 			});
 		});
