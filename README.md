@@ -115,7 +115,7 @@ The object returned is a rollup of our results.  Attributes sit on the `attribut
 	sheet.sections.inventory[1].type="Bag of Gold";
 ```
 
-You might think you could use `cacheAsync()` and `cacheRepeatingAsync()` to populate your own object wrapper, and you'd be right.  But `cacheMultipleAsync() `is more than just syntactic sugar.  In the above example, any server calls which can be bundled together, are (our specified basic attributes and both repeating sections are retrieved with a single call).  Portions of the Roll20 code which cannot be bundeled, (such as getSectionIDs) are parallelized and run simultaneously rather than sequentially.  Finally, once attribute have been modified, the following will save all changes in a single call, regardless of which tracked objects they were made to:
+You might think you could use `cacheAsync()` and `cacheRepeatingAsync()` to populate your own object wrapper, and you'd be right.  But `cacheMultipleAsync() `is more than just syntactic sugar.  In the above example, any server calls which _can_ be bundled together, _are_ bundled together (our specified basic attributes and both repeating sections are retrieved with a single call).  The portions of the Roll20 code which cannot be bundled, (such as getSectionIDs) are parallelized and run simultaneously rather than sequentially.  Finally, once attributes have been modified, the following will save all changes in a single call, regardless of which tracked objects they were made to:
 
 ```
 	sheet.commitAsync();
