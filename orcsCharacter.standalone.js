@@ -1,5 +1,5 @@
 //-------------------------------------------------------------------------------------
-// Roll20Async
+// orcsAsync
 // Compensates for a defect in the underlying Roll20 system, where it "loses context"
 // (forgets which player is active) during asynchronous methods and callbacks, 
 // resulting in error messages like:
