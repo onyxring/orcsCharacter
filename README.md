@@ -139,10 +139,6 @@ I believe a side-effect of improved syntaxes, generally, is they often simplify 
 
  The comparable vanilla code is significantly longer and is expressed as a slightly shorter version of the previous `combineAllBagsOfGoldVanilla()` example.
 
-### Installation
-
-Installation is a snap.  Just paste the content from one of the "complete" files (either "orcsCharacter.standalone.js", or the smaller "orcsCharacter.standalone.min.js") into the top of your SheetWorker code and you're ready.
-
 ### A PC by any other name...
 
 "PC" isn't a very unique name in RPGs and the chance for collision with one of your own variable names is high. It's not a problem.  Just copy the content of the `pc` variable before you assign it in your own code:
@@ -157,5 +153,9 @@ Or if you'd rather, you can just rename the `pc` variable to whatever you want b
 	var _myPlayerCharacter = orcsCharacter.create();
 ```
 
+### Installation
+
+Installation is a snap.  If you are not already using ORCS collection (see below) and want to include this piecemeal, just paste the content from one of the "standalone" files (either "orcsCharacter.standalone.js", or the smaller "orcsCharacter.standalone.min.js") into the top of your SheetWorker code and you're ready.  
+
 ### Part of ORCS
-This module is part of the [OnyxRing Client Script](https://github.com/onyxring/ORCS-for-Roll20) collection of scripts for the Roll20 platform.  It depends upon the [Roll20Async](https://github.com/onyxring/Roll20Async) module, since JavaScript Promises are a cornerstone of `orcsCharacter`’s expressiveness, and automatically includes it in the "standAlone" versions of this script.  If you are not using the complete version of ORCS, but are instead including portions of it in piecemeal fashion, the orcsAsync dependency may already be included by virtue of another member script.  In that case, you may choose to include one of the "noDependencies" versions of this script.
+This module is part of the [OnyxRing Client Script](https://github.com/onyxring/ORCS-for-Roll20) collection of scripts for the Roll20 platform.  It depends upon the [Roll20Async](https://github.com/onyxring/Roll20Async) module, since JavaScript Promises are a cornerstone of `orcsCharacter`’s expressiveness, and automatically includes it in the "standAlone" versions of this script.  If you are not using the complete version of ORCS, but are instead picking-and-choosing portions of ORCS, the orcsAsync dependency may already be included by virtue of another member script.  In that case, you may choose to include one of the "noDependencies" versions of this script.
