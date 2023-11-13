@@ -6,9 +6,10 @@
 //
 //      Error: Trying to do getAttrs when no character is active in sandbox.
 //
-// Include this module to have setTimeout() and setInterval() just start working as 
-// expected; no additional setup required.  Additionally, async-safe versions of the
-// typical attribute functions will be available:
+// Include this script at the top of your character sheet's code setion to have 
+// setTimeout() and setInterval() just start working as expected; no additional setup
+// required.  Additionally, async-safe versions of the typical attribute functions will 
+// be available:
 //
 //      getAttrsAsync
 //      setAttrsAsync
