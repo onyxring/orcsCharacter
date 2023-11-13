@@ -157,14 +157,5 @@ Or if you'd rather, you can just rename the `pc` variable to whatever you want b
 	var _myPlayerCharacter = orcsCharacter.create();
 ```
 
-### “You are a familiar character, sir.”
-
-You might have heard of orCharacter before since I once released an even more beta version of it (a “beta-ier” version?), included in a larger API-dependent framework.  That whole framework was a lot to bite off for a single, targeted feature.  For this discrete release:
-
-* I've peeled `orcsCharacter` (**_this_** client script flavor of orCharacter) out to stand on its own.
-* It is for Sheet Workers only; there are no API requirements.
-* I’ve refactored the original code to clearly differentiate synchronous from asynchronous functions.  If you have been using the version supplied with the beta release of [ORAL ORCS](https://github.com/onyxring/Roll20OralOrcs), some minor modifications might be required to transition to this revision.
-* The caching/bulk-read-write features described above are brand-spanking new!
-* I’ve included the recently updated [Roll20Async](https://github.com/onyxring/Roll20Async) script since this is a dependency and JavaScript Promises are a cornerstone of `orcsCharacter`’s expressiveness.
-
-The enhancements from the previous ORAL ORCS version are non-trivial, so it still gets the beta moniker for now; however, testing so far has also been non-trivial so it should be solid enough to try out in development versions of your character sheets.
+### Part of ORCS
+This module is part of the [OnyxRing Client Script](https://github.com/onyxring/ORCS-for-Roll20) collection of scripts for the Roll20 platform.  It depends upon the [Roll20Async](https://github.com/onyxring/Roll20Async) module, since JavaScript Promises are a cornerstone of `orcsCharacter`’s expressiveness, and automatically includes it in the "standAlone" versions of this script.  If you are not using the complete version of ORCS, but are instead including portions of it in piecemeal fashion, the orcsAsync dependency may already be included by virtue of another member script.  In that case, you may choose to include one of the "noDependencies" versions of this script.
