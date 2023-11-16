@@ -137,7 +137,7 @@ I believe a side-effect of improved syntaxes, generally, is they often simplify 
 	pc.HP = (await pc.cacheRepeatingAsync("inventory", ["value"])).reduce((i, v) => i + v.value, 0);
 ```
 
- The comparable vanilla code is significantly longer and is expressed as a slightly shorter version of the previous `combineAllBagsOfGoldVanilla()` example.
+ The comparable vanilla code is *significantly* longer, more complex, and resembles a variant of the previous `combineAllBagsOfGoldVanilla()` example.
 
 ### A PC by any other name...
 
