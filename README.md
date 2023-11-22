@@ -144,7 +144,7 @@ I believe a beneficial side effect of improved syntaxes generally, is they often
 
 ### A PC by any other name...
 
-"PC" isn't a very unique name in RPGs and the chance for collision with one of your own variable names is high. It's not a problem.  Just copy the content of the `pc` variable before you assign it in your own code:
+"PC" isn't a very unique name in RPGs and the chance for collision with one of your own variable names is high. It's not a problem.  Just copy the content of the `pc` variable before you reassign it in your own code:
 
 ```
  	var _myPlayerCharacter = pc;
