@@ -1,10 +1,10 @@
 # orCharacter for Roll20 character sheets (orcsCharacter)
 
-orCharacter for character sheets is a self-contained, non-invasive script which significantly simplifies using attributes by implementing JavaScript’s Proxy and Async/Await patterns.  It drops easily into new and existing sheets without affecting your existing code.  It’s non-invasive so you can mix-and-match traditional code with orCharacter as you please.  Here’s a short-ish rundown of what orCharacter brings to the table:
+orcsCharacter is a Sheet Worker version of the API helper oralCharacter. It is a self-contained, non-invasive script which significantly simplifies using attributes by implementing JavaScript’s Proxy and Async/Await patterns.  It drops easily into new and existing sheets without affecting your existing code.  It’s non-invasive so you can mix-and-match traditional code with orcsCharacter as you please.  Here’s a short-ish rundown of what orcsCharacter brings to the table:
 
 ### Attributes as properties
 
-The simplest example is reading and writing attributes.  Consider the act of healing the player character’s `HP` with their `REC`overy.  Using orCharacter, you write this as:
+The simplest example is reading and writing attributes.  Consider the act of healing the player character’s `HP` with their `REC`overy.  Using orcsCharacter, you write this as:
 
 ```
 	pc.HP = await pc.HP + await pc.REC;
@@ -20,22 +20,22 @@ Compare the above to the following vanilla code which does the same thing:
 
 Of course, this isn’t an overwhelming example, but it *does* underscore the idea that callbacks, a staple in coding practices of years past, make things more convoluted than their modern `await` alternatives.  Complex tasks can get out of hand quickly.
 
-_There are a couple of noteworthy points to make about the orCharacter example above:_
-
-* _The properties exposing character attributes are asynchronous and leverage the Async/Await features of the JavaScript language.  In short, reading and writing properties each interact directly with the Roll20 servers.  The `await` keyword causes code to pause until the server interaction is complete, rather than having to define callback functions. (We make this more efficient in the next section.)_
-* In addition to accessing attributes as properties, they can also be accessed by name.  For example:
-  ```
-  	pc["HP"] = await pc["HP"] + await pc["REC"];
-  ```
-* _orCharacter also attempts to detect and manage numeric attributes.  Out of the box, if attributes are “likely” numeric, they are automatically converted to numbers, relieving you from having to write the traditional type-conversion code (e.g. `Numeric(attr||0)`).  If this behavior doesn’t shake your jive, you can easily turn it off and restore the default Roll20 treatment of attributes by adding this to the top of your SheetWorker:_
-
-```
-	pc.preferNumeric(false);
-```
-
+> _There are a few of noteworthy points to make about the orcsCharacter example above:_
+>
+> * _orcsCharacter also attempts to detect and manage numeric attributes.  Out of the box, if attributes are “likely” numeric, they are automatically converted to numbers, relieving you from having to write the traditional type-conversion code (e.g. `Numeric(attr||0)`).  If this behavior doesn’t shake your jive, you can easily turn it off and restore the default Roll20 treatment of attributes by adding this to the top of your SheetWorker:_
+>
+>```
+>   pc.preferNumeric(false);
+>```
+>
+> * _The properties exposing character attributes are asynchronous and leverage the Async/Await features of the JavaScript language.  In short, reading and writing properties each interact directly with the Roll20 servers.  The `await` keyword causes code to pause until the server interaction is complete, rather than having to define callback functions. (We make this more efficient in the next section.)_
+> * In addition to accessing attributes as properties, they can also be accessed by name.  For example:
+> ```
+>   pc["HP"] = await pc["HP"] + await pc["REC"];
+> ```
 ### Attributes as cached properties
 
-The above “simplest example” follows an “on-demand” philosophy.  Read an attribute?  Go to the server.  Write an attribute?  Go to the server.  Read the same attribute again?  Go to the server.  This is fine for many use cases, but for complex or performance-critical code, orCharacter supports bulk reads and writes using `cacheAsync()` which keeps all changes in memory until we are ready to save them all at once with `commitAsyc()`:
+The above “simplest example” follows an “on-demand” philosophy.  Read an attribute?  Go to the server.  Write an attribute?  Go to the server.  Read the same attribute again?  Go to the server.  This is fine for many use cases, but for complex or performance-critical code, orcsCharacter supports bulk reads and writes using `cacheAsync()` which keeps all changes in memory until we are ready to save them all at once with `commitAsyc()`:
 
 ```
 	var attrbs = await pc.cacheAsync(["HP", "spiritPool", "efficacy"]); //get several attributes at the same time
@@ -50,7 +50,7 @@ _Also note we aren’t `await`ing the final `commitAsync()` call. This is a choi
 
 ### Simplified Repeating Sections
 
-Repeating Sections are awesome, but they also usher in some of The Most Complicated Code in Sheet Workers today.  orCharacter makes working with Repeating Sections markedly more intuitive and expressive.
+Repeating Sections are awesome, but they also usher in some of The Most Complicated Code in Sheet Workers today.   makes working with Repeating Sections markedly more intuitive and expressive.
 
 Here’s an example which searches the PC’s inventory for all disparate “Bags of Gold” and combines their contents into a single bag:
 
@@ -95,7 +95,7 @@ The above is straightforward, linear, and readable.  For comparison, I put toget
 	}
 ```
 
-While it’s true the orCharacter version is shorter than the traditional version, that isn’t the biggest benefit here.  The complexity of the vanilla code, including the nested callbacks and amalgamated strings acting as attribute pointers, makes it harder to grok at a glance.  The orCharacter version, by comparison, is easier to follow and therefore support.
+While it’s true the  version is shorter than the traditional version, that isn’t the biggest benefit here.  The complexity of the vanilla code, including the nested callbacks and amalgamated strings acting as attribute pointers, makes it harder to grok at a glance.  The  version, by comparison, is easier to follow and therefore support.
 
 ### Advanced Caching
 
@@ -123,7 +123,7 @@ You might think you could use `cacheAsync()` and `cacheRepeatingAsync()` to popu
 
 ### Tangential benefits
 
-I believe a side-effect of improved syntaxes, generally, is they often simplify previously difficult tasks almost accidentally.  For example, summing values of a Repeating Section and assigning their total to a character attribute sounds like a trivial undertaking.  orCharacter makes this so, not because it provides a specialized `addItUp` function (because it *doesn’t*), but as a consequence of its expressiveness.  You can do this…
+I believe a side-effect of improved syntaxes, generally, is they often simplify previously difficult tasks almost accidentally.  For example, summing values of a Repeating Section and assigning their total to a character attribute sounds like a trivial undertaking.  orcsCharacter makes this so, not because it provides a specialized `addItUp` function (because it *doesn’t*), but as a consequence of its expressiveness.  You can do this…
 
 ```
 	var total = 0, inventory = await pc.cacheRepeatingAsync("inventory");
