@@ -44,9 +44,9 @@ The above “simplest example” follows an “on-demand” philosophy.  Read an
 	attrbs.commitAsync(); //save changes together
 ```
 
-_Notice that, while we may `await` round trips to the server, we do **not** do so when reading or writing cached attributes._
-
-_Also note we aren’t `await`ing the final `commitAsync()` call. This is a choice.  We would do so if we needed to ensure all attributes were committed in subsequent logic._
+> _Notice that, while we may `await` round trips to the server, we do **not** do so when reading or writing cached attributes._
+> 
+> _Also note we aren’t `await`ing the final `commitAsync()` call. This is a choice.  We would do so if we needed to ensure all attributes were committed in subsequent logic._
 
 ### Simplified Repeating Sections
 
