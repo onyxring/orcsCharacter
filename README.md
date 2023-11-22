@@ -121,6 +121,9 @@ You might think you could use `cacheAsync()` and `cacheRepeatingAsync()` to popu
 	sheet.commitAsync();
 ```
 
+> *In case it wasn't clear, it bears repeating: orcsCharacter tracks changes in cached attributes.  Only modified attributes, whether changed, deleted, or newly added, are sent to the servers during `commitAsyc()` calls.
+
+
 ### Tangential benefits
 
 I believe a side-effect of improved syntaxes, generally, is they often simplify previously difficult tasks almost accidentally.  For example, summing values of a Repeating Section and assigning their total to a character attribute sounds like a trivial undertaking.  orcsCharacter makes this so, not because it provides a specialized `addItUp` function (because it *doesn’t*), but as a consequence of its expressiveness.  You can do this…
