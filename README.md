@@ -126,7 +126,7 @@ You might think you could use `cacheAsync()` and `cacheRepeatingAsync()` to popu
 
 ### Tangential benefits
 
-I believe a beneficial sid eeffect of improved syntaxes generally, is they often simplify previously difficult tasks almost accidentally.  For example, summing values of a Repeating Section and assigning their total to a character attribute sounds like a trivial undertaking.  orcsCharacter makes this so, not because it provides a specialized `addItUp` function (because it *doesn’t*), but as a consequence of its expressiveness.  You can do this…
+I believe a beneficial side effect of improved syntaxes generally, is they often simplify previously difficult tasks almost accidentally.  For example, summing values of a Repeating Section and assigning their total to a character attribute sounds like a trivial undertaking.  orcsCharacter makes this so, not because it provides a specialized `addItUp` function (because it *doesn’t*), but as a consequence of its expressiveness.  You can do this…
 
 ```
 	var total = 0, inventory = await pc.cacheRepeatingAsync("inventory");
