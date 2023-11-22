@@ -50,7 +50,7 @@ The above “simplest example” follows an “on-demand” philosophy.  Read an
 
 ### Simplified Repeating Sections
 
-Repeating Sections are awesome, but they also usher in some of The Most Complicated Code in Sheet Workers today.   makes working with Repeating Sections markedly more intuitive and expressive.
+Repeating Sections are awesome, but they also usher in some of The Most Complicated Code in Sheet Workers today.   orcsCharacter makes working with Repeating Sections markedly more intuitive and expressive.
 
 Here’s an example which searches the PC’s inventory for all disparate “Bags of Gold” and combines their contents into a single bag:
 
