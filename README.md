@@ -121,7 +121,7 @@ You might think you could use `cacheAsync()` and `cacheRepeatingAsync()` to popu
 	sheet.commitAsync();
 ```
 
-> *In case it wasn't clear, it bears repeating: orcsCharacter tracks changes in cached attributes.  Only modified attributes, whether changed, deleted, or newly added, are sent to the servers during `commitAsyc()` calls.
+> *In case it wasn't clear, it bears repeating: orcsCharacter tracks changes in cached attributes.  Only modified attributes, whether changed, deleted, or newly added, are sent to the servers during `commitAsyc()` calls.*
 
 
 ### Tangential benefits
