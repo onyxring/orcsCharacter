@@ -18,7 +18,7 @@ Compare the above to the following vanilla code which does the same thing:
 	});
 ```
 
-Of course, this isn’t an overwhelming example, but it *does* underscore the idea that callbacks, a staple in coding practices of years past, make things more convoluted than their modern `async` alternatives.  Complex tasks can get out of hand quickly.
+Of course, this isn’t an overwhelming example, but it *does* underscore the idea that callbacks, a staple in coding practices of years past, make things more convoluted than their modern `await` alternatives.  Complex tasks can get out of hand quickly.
 
 _There are a couple of noteworthy points to make about the orCharacter example above:_
 
