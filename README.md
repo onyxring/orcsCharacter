@@ -95,11 +95,11 @@ The above is straightforward, linear, and readable.  For comparison, I put toget
 	}
 ```
 
-While it’s true the  version is shorter than the traditional version, that isn’t the biggest benefit here.  The complexity of the vanilla code, including the nested callbacks and amalgamated strings acting as attribute pointers, makes it harder to grok at a glance.  The  version, by comparison, is easier to follow and therefore support.
+While it’s true the orcsCharacter version is about half as long as the traditional version, that isn’t the biggest benefit here.  The complexity of the vanilla code, including the nested callbacks and amalgamated strings acting as attribute pointers, makes it harder to grok at a glance.  The orcsCharacter version, by comparison, is easier to follow and therefore support.
 
 ### Advanced Caching
 
-While the caching functions shown above do a good job pulling lots of attributes down at one time, then subsequentally saving a mess of changes in a single trip to the server, there are a few cases where it helps to optimize this even more.  There are a handful of mutant character sheets, for example, with dozens of repeating sections; managing these individually means dozens of round trips.  `cacheMultipleAsync()` lets you bundle Attributes and Repeating Sections together.  Here's a small example of getting basic attributes and attributes from two different repeating sections at the same time, using arguments which closely resemble what we would pass to `cacheAsync()` and `cacheRepeatingAsync()`:
+While the caching functions shown above do a good job pulling lots of attributes down at one time, then subsequentally saving a mess of changes in a single trip to the server, a few cases can benefit from even more optimization.  For instance, there are a handful of mutant character sheets with dozens of Repeating Sections; managing these sections individually means dozens of round trips.  `cacheMultipleAsync()` lets you bundle Attributes and Repeating Sections together.  Here's a small example which gets basic attributes, plus attributes from two different repeating sections, all at the same time using arguments which closely resemble what we would pass to `cacheAsync()` and `cacheRepeatingAsync()`:
 
 ```
 	var sheet = await pc.cacheMultipleAsync(["HP", "REC"], {
