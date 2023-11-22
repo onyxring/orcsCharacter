@@ -29,7 +29,7 @@ Of course, this isn’t an overwhelming example, but it *does* underscore the id
 >```
 >
 > * _The properties exposing character attributes are asynchronous and leverage the Async/Await features of the JavaScript language.  In short, reading and writing properties each interact directly with the Roll20 servers.  The `await` keyword causes code to pause until the server interaction is complete, rather than having to define callback functions. (We make this more efficient in the next section.)_
-> * In addition to accessing attributes as properties, they can also be accessed by name.  For example:
+> * _In addition to accessing attributes as properties, they can also be accessed by name.  For example:_
 > ```
 >   pc["HP"] = await pc["HP"] + await pc["REC"];
 > ```
