@@ -7,7 +7,7 @@
 The simplest example is reading and writing attributes.  Consider the act of healing the player character’s `HP` with their `REC`overy.  Using orcsCharacter, you write this as:
 
 ```
-	pc.HP = await pc.HP + await pc.REC;
+pc.HP = await pc.HP + await pc.REC;
 ```
 
 Compare the above to the following vanilla code which does the same thing:
